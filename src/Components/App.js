@@ -1,7 +1,14 @@
 import React from "react";
+import "../index.css";
 
 function App() {
-  return <div>Hello React</div>;
+  return (
+    <>
+      <header>------ Memory</header>
+      <section>Main</section>
+      <footer>Made by Will Moretz</footer>
+    </>
+  );
 }
 
 export default App;

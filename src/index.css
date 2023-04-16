@@ -54,6 +54,13 @@ section {
   display: flex;
   justify-content: center;
   gap: clamp(8px, 5vw, 128px);
+  margin-right: 0;
+}
+
+@media (min-width: 375px) {
+  .scoreboard {
+    margin-right: 24px;
+  }
 }
 
 .scoreboard > div {

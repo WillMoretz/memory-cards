@@ -8,6 +8,12 @@
   --pokemon-red: #e4000f;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 header {
   background-color: var(--pokemon-red, red);
   color: yellow;
@@ -32,4 +38,34 @@ header {
   text-align: center;
   position: relative;
   bottom: 18px;
+}
+
+section {
+  background-color: rgb(240, 240, 240);
+  padding: 32px 0 32px 0;
+  flex: 1;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
+  gap: 16px;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+}
+
+.card {
+  border-radius: 32px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding-bottom: 20px;
+}
+
+.card > img {
+  aspect-ratio: 1/1;
+  width: 100%;
+}
+
+.card > div::first-letter {
+  text-transform: capitalize;
 }

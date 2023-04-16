@@ -14,7 +14,10 @@ function shuffleArray(array) {
 async function fetchPokemon(id) {
   const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   const pokemonJSON = await pokemonData.json();
-  return pokemonJSON;
+  return {
+    name: pokemonJSON.name,
+    imgSrc: pokemonJSON.sprites.front_default,
+  };
 }
 
 function CardContainer(props) {
@@ -34,14 +37,7 @@ function CardContainer(props) {
       for (const id of pokemonIDs) {
         pokemonsData.push(fetchPokemon(id));
       }
-      const pokemonsJSON = await Promise.all(pokemonsData);
-      const pokemons = [];
-      pokemonsJSON.forEach((pokemon) =>
-        pokemons.push({
-          name: pokemon.name,
-          imgSrc: pokemon.sprites.front_default,
-        })
-      );
+      const pokemons = await Promise.all(pokemonsData);
 
       setPokemonArray(pokemons);
       setIsLoaded(true);

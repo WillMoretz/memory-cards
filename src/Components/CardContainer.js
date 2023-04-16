@@ -23,7 +23,7 @@ async function fetchPokemon(id) {
 function CardContainer(props) {
   const { pokemonIDs } = props;
   const [pokemonArray, setPokemonArray] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [currentIDs, setCurrentIDs] = useState([]);
 
   let pokemonArrayCopy = pokemonArray;
   pokemonArrayCopy = shuffleArray(pokemonArrayCopy);
@@ -32,6 +32,7 @@ function CardContainer(props) {
   ));
 
   useEffect(() => {
+    if (currentIDs === pokemonIDs) return;
     async function getPokemons() {
       const pokemonsData = [];
       for (const id of pokemonIDs) {
@@ -40,12 +41,12 @@ function CardContainer(props) {
       const pokemons = await Promise.all(pokemonsData);
 
       setPokemonArray(pokemons);
-      setIsLoaded(true);
+      setCurrentIDs(pokemonIDs);
     }
     getPokemons();
-  }, []);
+  }, [pokemonIDs]);
 
-  return isLoaded ? (
+  return currentIDs.length !== 0 ? (
     <div className="card-container">{cards}</div>
   ) : (
     <div className="loading">Loading...</div>

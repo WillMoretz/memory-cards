@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CardContainer from "./CardContainer";
 import ScoreBoard from "./ScoreBoard";
 import "../index.css";
 import pokeball from "../pokeball.svg";
 
-function generateRandomPokemonID(amount, IDs) {
+function generateRandomPokemonIDs(amount, IDs) {
   const result = [];
   let idsGenerated = 0;
   while (idsGenerated < amount) {
-    const id = Math.floor(Math.random() * 151);
-    if (!IDs.includes(id)) {
+    const id = Math.ceil(Math.random() * 151);
+    if (!IDs.includes(id) && !result.includes(id)) {
       result.push(id);
       idsGenerated += 1;
     }
@@ -18,7 +18,14 @@ function generateRandomPokemonID(amount, IDs) {
 }
 
 function App() {
-  // const [pokemonIDs, setpokemonIDs] = useState([]);
+  const [pokemonIDs, setPokemonIDs] = useState([]);
+  const [newIDs, setNewIDs] = useState([]);
+
+  useEffect(() => {
+    const randomIds = generateRandomPokemonIDs(10, pokemonIDs);
+    setPokemonIDs(randomIds);
+    setNewIDs(randomIds);
+  }, []);
 
   return (
     <>
@@ -28,7 +35,7 @@ function App() {
       </div>
       <section>
         <ScoreBoard currentScore={0} highScore={0} />
-        <CardContainer pokemonIDs={generateRandomPokemonID(10, [])} />
+        <CardContainer pokemonIDs={newIDs} />
       </section>
       <footer>
         Made by <i>Will Moretz</i>

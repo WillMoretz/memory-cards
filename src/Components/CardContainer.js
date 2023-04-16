@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
@@ -9,8 +10,14 @@ function shuffleArray(array) {
   }
 }
 
+async function fetchPokemon(id) {
+  const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  const pokemonJSON = await pokemonData.json();
+  return pokemonJSON;
+}
+
 function CardContainer(props) {
-  const { pokemonID } = props;
+  const { pokemonIDs } = props;
   const [pokemonArray, setPokemonArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -19,21 +26,24 @@ function CardContainer(props) {
   ));
 
   useEffect(() => {
-    async function fetchPokemon() {
-      const pokemonData = await fetch(
-        `https://pokeapi.co/api/v2/pokemon/${pokemonID}`
+    async function getPokemons() {
+      const pokemonsData = [];
+      for (const id of pokemonIDs) {
+        pokemonsData.push(fetchPokemon(id));
+      }
+      const pokemonsJSON = await Promise.all(pokemonsData);
+      const pokemons = [];
+      pokemonsJSON.forEach((pokemon) =>
+        pokemons.push({
+          name: pokemon.name,
+          imgSrc: pokemon.sprites.front_default,
+        })
       );
-      const pokemonJSON = await pokemonData.json();
-      setPokemonArray([
-        ...pokemonArray,
-        {
-          name: pokemonJSON.name,
-          imgSrc: pokemonJSON.sprites.front_default,
-        },
-      ]);
+
+      setPokemonArray(pokemons);
       setIsLoaded(true);
     }
-    fetchPokemon();
+    getPokemons();
   }, []);
 
   return isLoaded ? (

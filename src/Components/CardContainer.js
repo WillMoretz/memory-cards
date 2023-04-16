@@ -8,6 +8,7 @@ function shuffleArray(array) {
     const j = Math.floor(Math.random() * (i + 1));
     [arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
   }
+  return arrayCopy;
 }
 
 async function fetchPokemon(id) {
@@ -21,7 +22,9 @@ function CardContainer(props) {
   const [pokemonArray, setPokemonArray] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const cards = pokemonArray.map((pokemon) => (
+  let pokemonArrayCopy = pokemonArray;
+  pokemonArrayCopy = shuffleArray(pokemonArrayCopy);
+  const cards = pokemonArrayCopy.map((pokemon) => (
     <Card key={pokemon.name} name={pokemon.name} imgSrc={pokemon.imgSrc} />
   ));
 

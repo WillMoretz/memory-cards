@@ -44,6 +44,7 @@ section {
   background-color: rgb(240, 240, 240);
   padding: 32px 0 32px 0;
   flex: 1;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .card-container {
@@ -68,4 +69,11 @@ section {
 
 .card > div::first-letter {
   text-transform: capitalize;
+}
+
+footer {
+  padding: 4px 0 6px 0;
+  text-align: center;
+  background-color: rgb(230, 230, 230);
+  font-family: Arial, Helvetica, sans-serif;
 }

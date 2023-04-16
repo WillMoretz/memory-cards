@@ -76,7 +76,8 @@ section {
 .card-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(192px, 1fr));
-  gap: 16px;
+  column-gap: 16px;
+  row-gap: 26px;
   justify-content: center;
   text-align: center;
   padding: 16px;
@@ -86,6 +87,13 @@ section {
   border-radius: 40px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding-bottom: 20px;
+  transition: transform 225ms ease-in-out;
+  transform: translateY(0);
+}
+
+.card:hover {
+  transform: translateY(-15px);
+  cursor: pointer;
 }
 
 .card > img {

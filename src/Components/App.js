@@ -1,12 +1,18 @@
 import React from "react";
-import "../index.css";
 import CardContainer from "./CardContainer";
 import ScoreBoard from "./ScoreBoard";
+import "../index.css";
+import pokeball from "../pokeball.svg";
+
+// console.log(PokeballImg);
 
 function App() {
   return (
     <>
-      <header>------ Memory</header>
+      <header>Pokemon Memory</header>
+      <div className="header-border">
+        <img className="pokeball" src={pokeball} alt="a pokeball" />
+      </div>
       <section>
         <ScoreBoard currentScore={0} highScore={0} />
         <CardContainer

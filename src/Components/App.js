@@ -4,8 +4,6 @@ import ScoreBoard from "./ScoreBoard";
 import "../index.css";
 import pokeball from "../pokeball.svg";
 
-// console.log(PokeballImg);
-
 function App() {
   return (
     <>
@@ -19,7 +17,9 @@ function App() {
           pokemonIDs={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
         />
       </section>
-      <footer>Made by Will Moretz</footer>
+      <footer>
+        Made by <i>Will Moretz</i>
+      </footer>
     </>
   );
 }

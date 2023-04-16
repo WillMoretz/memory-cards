@@ -3,3 +3,33 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --pokemon-red: #e4000f;
+}
+
+header {
+  background-color: var(--pokemon-red, red);
+  color: yellow;
+  text-align: center;
+  padding: 1rem;
+  font-family: "Pokemon Solid", sans-serif;
+  font-size: clamp(32px, 5vw, 64px);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.header-border {
+  width: 100%;
+  height: 4px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+}
+
+.pokeball {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  position: relative;
+  bottom: 18px;
+}

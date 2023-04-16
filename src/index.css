@@ -6,6 +6,9 @@
 
 :root {
   --pokemon-red: #e4000f;
+  --pokemon-yellow: #ffcb05;
+  /* --pokemon-blue: #3c5aa6;
+  --pokemon-light-blue: #2a75bb; */
 }
 
 #root {
@@ -16,7 +19,7 @@
 
 header {
   background-color: var(--pokemon-red, red);
-  color: yellow;
+  color: var(--pokemon-yellow, yellow);
   text-align: center;
   padding: 1rem;
   font-family: "Pokemon Solid", sans-serif;
@@ -42,9 +45,25 @@ header {
 
 section {
   background-color: rgb(240, 240, 240);
-  padding: 32px 0 32px 0;
+  padding: 16px 0 32px 0;
   flex: 1;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 5vw, 128px);
+}
+
+.scoreboard > div {
+  background-color: lightblue;
+  color: rgb(20, 20, 20);
+  padding: 0.5em 1em 0.5em 1em;
+  margin: 16px 0 16px 0;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 32px;
 }
 
 .card-container {
@@ -57,7 +76,7 @@ section {
 }
 
 .card {
-  border-radius: 32px;
+  border-radius: 40px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   padding-bottom: 20px;
 }

@@ -1,9 +1,8 @@
 import React from "react";
 
 function Card(props) {
-  const { name, imgSrc, isLoaded } = props;
+  const { name, imgSrc } = props;
 
-  if (!isLoaded) return <div>Loading...</div>;
   return (
     <div className="card">
       <img src={imgSrc} alt={name} />

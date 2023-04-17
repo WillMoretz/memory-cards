@@ -1,1 +1,1 @@
-Remember to modify .gitignore to ignore itself upon project creation
+A Guessing Game using Generation 1 Pokemon. Built using PokeAPI, React, CSS, HTML, and, of course, Javascript.

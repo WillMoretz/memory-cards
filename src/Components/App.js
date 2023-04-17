@@ -20,12 +20,16 @@ function generateRandomPokemonIDs(amount, IDs) {
 function App() {
   const [pokemonIDs, setPokemonIDs] = useState([]);
   const [newIDs, setNewIDs] = useState([]);
+  const [score, setScore] = useState([0]);
+  const [highScore, setHighScore] = useState([0]);
 
   useEffect(() => {
-    const randomIds = generateRandomPokemonIDs(10, pokemonIDs);
-    setPokemonIDs(randomIds);
+    if (score > highScore) setHighScore(score);
+    if (score % 5 > 1) return;
+    const randomIds = generateRandomPokemonIDs(5, pokemonIDs);
+    setPokemonIDs(...pokemonIDs, randomIds);
     setNewIDs(randomIds);
-  }, []);
+  }, [score]);
 
   return (
     <>

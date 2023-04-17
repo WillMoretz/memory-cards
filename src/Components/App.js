@@ -19,9 +19,14 @@ function generateRandomPokemonIDs(amount, IDs) {
 
 function App() {
   const [pokemonIDs, setPokemonIDs] = useState([]);
+  const [clickedIds, setClickedIds] = useState([]);
   const [newIDs, setNewIDs] = useState([]);
   const [score, setScore] = useState([0]);
   const [highScore, setHighScore] = useState([0]);
+
+  const handleCardClick = (id) => {
+    console.log(id);
+  };
 
   useEffect(() => {
     if (score > highScore) setHighScore(score);
@@ -39,7 +44,7 @@ function App() {
       </div>
       <section>
         <ScoreBoard currentScore={0} highScore={0} />
-        <CardContainer pokemonIDs={newIDs} />
+        <CardContainer pokemonIDs={newIDs} handleCardClick={handleCardClick} />
       </section>
       <footer>
         Made by <i>Will Moretz</i>

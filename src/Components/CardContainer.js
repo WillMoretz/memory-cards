@@ -17,18 +17,27 @@ async function fetchPokemon(id) {
   return {
     name: pokemonJSON.name,
     imgSrc: pokemonJSON.sprites.front_default,
+    id,
   };
 }
 
 function CardContainer(props) {
-  const { pokemonIDs } = props;
+  const { pokemonIDs, handleCardClick } = props;
   const [pokemonArray, setPokemonArray] = useState([]);
   const [currentIDs, setCurrentIDs] = useState([]);
+
+  const handleClick = (id) => handleCardClick(id);
 
   let pokemonArrayCopy = pokemonArray;
   pokemonArrayCopy = shuffleArray(pokemonArrayCopy);
   const cards = pokemonArrayCopy.map((pokemon) => (
-    <Card key={pokemon.name} name={pokemon.name} imgSrc={pokemon.imgSrc} />
+    <Card
+      key={pokemon.name}
+      name={pokemon.name}
+      imgSrc={pokemon.imgSrc}
+      id={pokemon.id}
+      handleClick={handleClick}
+    />
   ));
 
   useEffect(() => {

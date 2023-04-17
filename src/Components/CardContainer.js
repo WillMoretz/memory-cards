@@ -42,6 +42,10 @@ function CardContainer(props) {
 
   useEffect(() => {
     if (currentIDs === pokemonIDs) return;
+    if (pokemonIDs.length === 0 && pokemonArray.length > 0) {
+      pokemonArray.length = 0;
+      return;
+    }
     async function getPokemons() {
       const pokemonsData = [];
       for (const id of pokemonIDs) {
@@ -49,7 +53,7 @@ function CardContainer(props) {
       }
       const pokemons = await Promise.all(pokemonsData);
 
-      setPokemonArray(pokemons);
+      setPokemonArray([...pokemonArray, ...pokemons]);
       setCurrentIDs(pokemonIDs);
     }
     getPokemons();

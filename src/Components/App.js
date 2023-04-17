@@ -19,20 +19,28 @@ function generateRandomPokemonIDs(amount, IDs) {
 
 function App() {
   const [pokemonIDs, setPokemonIDs] = useState([]);
-  const [clickedIds, setClickedIds] = useState([]);
+  const [clickedIDs, setClickedIDs] = useState([]);
   const [newIDs, setNewIDs] = useState([]);
-  const [score, setScore] = useState([0]);
-  const [highScore, setHighScore] = useState([0]);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const handleCardClick = (id) => {
-    console.log(id);
+    if (clickedIDs.includes(id)) {
+      setScore(0);
+      setClickedIDs([]);
+      setPokemonIDs([]);
+      setNewIDs([]);
+    } else {
+      setClickedIDs([...clickedIDs, id]);
+      setScore(score + 1);
+    }
   };
 
   useEffect(() => {
     if (score > highScore) setHighScore(score);
-    if (score % 5 > 1) return;
+    if (score < pokemonIDs.length - 2) return;
     const randomIds = generateRandomPokemonIDs(5, pokemonIDs);
-    setPokemonIDs(...pokemonIDs, randomIds);
+    setPokemonIDs([...pokemonIDs, ...randomIds]);
     setNewIDs(randomIds);
   }, [score]);
 
@@ -43,7 +51,7 @@ function App() {
         <img className="pokeball" src={pokeball} alt="a pokeball" />
       </div>
       <section>
-        <ScoreBoard currentScore={0} highScore={0} />
+        <ScoreBoard currentScore={score} highScore={highScore} />
         <CardContainer pokemonIDs={newIDs} handleCardClick={handleCardClick} />
       </section>
       <footer>

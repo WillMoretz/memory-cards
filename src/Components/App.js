@@ -48,7 +48,7 @@ function App() {
     <>
       <header>Pokemon Memory</header>
       <div className="header-border">
-        <img className="pokeball" src={pokeball} alt="a pokeball" />
+        <img className="pokeball" src={pokeball} alt="" />
       </div>
       <section>
         <ScoreBoard currentScore={score} highScore={highScore} />

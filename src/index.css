@@ -35,14 +35,20 @@ header {
   justify-content: center;
 }
 
-/* @keyframes rotation {
+@keyframes rotation {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(359deg);
   }
-} */
+}
+
+.loading {
+  aspect-ratio: 1/1;
+  width: 20vw;
+  animation: rotation 200ms linear infinite;
+}
 
 .pokeball {
   height: 40px;
@@ -50,7 +56,6 @@ header {
   text-align: center;
   position: relative;
   bottom: 18px;
-  /* animation: rotation 1s linear infinite; */
 }
 
 section {

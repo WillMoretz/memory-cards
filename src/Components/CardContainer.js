@@ -46,6 +46,8 @@ function CardContainer(props) {
       pokemonArray.length = 0;
       return;
     }
+    const loadingIcon = document.querySelector(".pokeball");
+    loadingIcon.classList.add("loading");
     async function getPokemons() {
       const pokemonsData = [];
       for (const id of pokemonIDs) {
@@ -55,6 +57,7 @@ function CardContainer(props) {
 
       setPokemonArray([...pokemonArray, ...pokemons]);
       setCurrentIDs(pokemonIDs);
+      loadingIcon.classList.remove("loading");
     }
     getPokemons();
   }, [pokemonIDs]);
@@ -62,7 +65,7 @@ function CardContainer(props) {
   return currentIDs.length !== 0 ? (
     <div className="card-container">{cards}</div>
   ) : (
-    <div className="loading">Loading...</div>
+    <div />
   );
 }
 
